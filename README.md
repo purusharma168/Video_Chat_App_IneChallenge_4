@@ -83,7 +83,7 @@ Note : click on Ctrl+C to quit server
 
 ## 💾 Deployment
 
-To deploy this project in heroku refer [link...]
+To deploy this project in heroku refer [link...](https://studygyaan.com/django/django-everywhere-host-your-django-app-for-free-on-heroku)
 
 
 
