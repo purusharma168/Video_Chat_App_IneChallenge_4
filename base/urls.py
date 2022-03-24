@@ -1,8 +1,4 @@
-from django.conf import settings
-from django.template.defaulttags import url
 from django.urls import path
-from django.views.static import serve
-
 from . import views
 
 urlpatterns = [
@@ -19,7 +15,5 @@ urlpatterns = [
     path('get_member/', views.getMember),
     path('delete_member/', views.deleteMember),
 
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]
 
