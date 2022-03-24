@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Sign Up</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/authcss.css' %}">
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+ 
+ {% for message in messages %}
+ <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+<center>  <strong>Message:</strong> {{ message }} </center>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+  </button>
+ </div>
+{% endfor %}
+
+  <div class="main_div">
+      <div class="box">
+        <h1 style="font-family: 'Times New Roman', Times, serif;">Sign Up</h1>
+        <form action="/signup" method="post">
+          {% csrf_token %}   
+
+          <div class="input-box">
+            <input type="text" id="username" name="username" autocomplete="off" placeholder="Alpha Numeric only " required  onfocus="this.placeholder = 'AplhaNumeric only : No symbols'" autofocus onfocusout="this.placeholder = ''" 
+             />
+
+            <label for="Username">Username</label>
+          </div>
+
+          <div class="input-box">
+            <input type="text" id="fname" name="fname" autocomplete="off" onfocus="this.placeholder = 'Enter First Name'" onfocusout="this.placeholder = ''" required autofocus/>
+            <label for="Username">First Name</label>
+          </div>
+
+          <div class="input-box">
+            <input type="text" id="lname" name="lname" onfocus="this.placeholder = 'Enter Last Name'" onfocusout="this.placeholder = ''"  autocomplete="off" required autofocus/>
+            <label for="Username">Last Name</label>
+          </div>
+
+          <div class="input-box">
+            <input type="email" id="email" name="email" onfocus="this.placeholder = 'Enter Email Address'" onfocusout="this.placeholder = ''" autocomplete="off" required autofocus/>
+            <label for="Username">Email Address</label>
+          </div>
+          
+          <div class="input-box">
+            <input type="password" id="pass1" name="pass1" onfocus="this.placeholder = 'Enter Password'" onfocusout="this.placeholder = ''" autocomplete="off" required/>
+            <label for="Password">Password</label>
+          </div>
+
+           <div class="input-box">
+            <input type="password" id="pass2" name="pass2" onfocus="this.placeholder = 'Enter Password again to confirm'" onfocusout="this.placeholder = ''" autocomplete="off" required/>
+            <label for="Password">Confirm Password</label>
+          </div>
+          
+          <input type="submit" value="Sign Up" /><br><br>
+          <a style="text-decoration: none;float: right; color: antiquewhite;" href="./signin">Already have an account ?<br> Sign In here...</a>
+        </form>
+      </div>
+    </div>
+
+</body>
+</html>

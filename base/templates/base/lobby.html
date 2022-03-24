@@ -1,0 +1,87 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<main>
+ {% if user.is_authenticated %}
+ <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <center><h5>Hello {{ fname }} !!, You're successfully logged in buddy</h5></center>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+  </button>
+ </div>
+      <a href="/signout"><button type="button" class="btn btn-outline-primary" style="margin: 2px;float: right;" type="submit">Sign Out</button></a>
+
+    
+    <section id="form-container">
+
+        <img id="logo" src="{% static 'images/chat-icon.png' %}"/>
+
+        <div id="welcome-message">
+            <h5>Welcome to iNeuron Data Science master Challenge-4 created by puru</h5>
+            <p>A Django video calling platform made just for you! free feel to call your friends</p>
+        </div>
+
+        <form id="form">
+            <div class="field-wrapper">
+
+                <div class="form-field">
+                    <label>Room:</label>
+                    <input name="room" placeholder="Enter a room name..."  style="text-transform:uppercase"/ required>
+                </div>
+
+                <div class="form-field">
+                    <label>Name:</label>
+                    <input name="name" placeholder="Enter your name..." value="{{ fname }}" style="text-transform:uppercase"/>
+                </div>
+
+                <div class="form-field">
+                    <input type="submit" value="Join Stream" />
+                </div>
+            </div>
+        </form>
+    </section>
+    
+    {% else %}
+      <h1 style="color: red;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Access Denied ! You're not Authorized to access this portal</h1>
+              <meta http-equiv = "refresh" content = "1; url = /signin" />
+    {% endif %}
+</main>
+
+<script>
+    let form = document.getElementById('form')
+
+    let handleSubmit = async (e) => {
+        e.preventDefault()
+        let room = e.target.room.value.toUpperCase()
+        let name = e.target.name.value
+
+        let response = await fetch(`/get_token/?channel=${room}`)
+        let data = await response.json()
+
+        let UID = data.uid
+        let token = data.token
+
+        sessionStorage.setItem('UID', UID)
+        sessionStorage.setItem('token', token)
+        sessionStorage.setItem('room', room)
+        sessionStorage.setItem('name', name)
+
+        window.open('/room/', '_self')
+    }
+
+
+
+    form.addEventListener('submit', handleSubmit)
+</script>
+
+{% endblock content %}
+

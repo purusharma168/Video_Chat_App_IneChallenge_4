@@ -1,0 +1,42 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+<main>
+    {% if user.is_authenticated %}
+    <section id="room-name-wrapper">
+        <p>Room Name: <span id="room-name"></span></p>
+    </section>
+
+    <section id="video-streams"></section>
+
+    <section id="controls-wrapper">
+        <div class="icon-wrapper">
+            <img class="control-icon" id="mic-btn" src="{% static 'images/microphone.svg' %}" />
+        </div>
+
+        <div class="icon-wrapper">
+            <img class="control-icon" id="camera-btn" src="{% static 'images/video.svg' %}" />
+        </div>
+
+        <div class="icon-wrapper">
+          <span id="sharescreen-btn"><img class="control-icon" src="{% static 'images/share-screen-svgrepo-com.svg' %}" /></span>
+        </div>
+        <!--<img class="control-icon" id="sharescreen-btn" src="{% static 'images/share-screen-svgrepo-com.svg' %}" />-->
+
+        <div class="icon-wrapper">
+            <img class="control-icon" id="leave-btn" src="{% static 'images/leave.svg' %}" />
+        </div>
+    </section>
+    {% else %}
+      <h1 style="color: red;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Access Denied ! You're not Authorized to access this portal</h1>
+              <meta http-equiv = "refresh" content = "1; url = /signin" />
+
+    {% endif %}
+</main>
+
+
+<script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.8.0.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/streams.js' %}" ></script>
+
+{% endblock content %}
