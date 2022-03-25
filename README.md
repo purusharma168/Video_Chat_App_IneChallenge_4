@@ -26,7 +26,7 @@ Auther :- https://github.com/purusharma168
 **Deployment -** Heroku
 
 
-Deployed App Demo : [Link - Click here...]()
+Deployed App Demo : [Link - Click here...](https://django-video-conference-app.herokuapp.com)
 
 ## 📎 Features implemented 
 - sign up
